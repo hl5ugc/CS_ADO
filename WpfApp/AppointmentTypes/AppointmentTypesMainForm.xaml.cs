@@ -10,6 +10,9 @@ namespace WpfApp.AppointmentTypes
     public partial class AppointmentTypesMainForm : Window
     {
         private readonly List<AppointmentType> _appointmentTypes; // Model Class AppointmentType 의 LIST
+        // [1] Database Name or Database Source : Server
+        // [2] 신임장  : 사용자 이름과 비밀번호
+        // [3] 선택적 매개변수
         private readonly string _connectionString =
             "Data Source=(localdb)\\MSSQLLocalDB; Initial catalog=AppointDB; Integrated Security = True;";
 
@@ -20,7 +23,10 @@ namespace WpfApp.AppointmentTypes
             AppointmentTypesListView.ItemsSource = _appointmentTypes;
             LoadData();
         }
-
+        // 데이터베이스에서 데이터 선택
+        // 데이터베이스에 데이터 삽입
+        // 데이터베이스에 데이터 업데이트
+        // 데이터베이스에서 데이터 삭제 
         private void LoadData()
         {
             _appointmentTypes.Clear();
@@ -31,6 +37,7 @@ namespace WpfApp.AppointmentTypes
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
+                // SELECT : 데이터베이스에서 데이터 선택
                 var command = new SqlCommand("SELECT Id, AppointmentTypeName, IsActive FROM AppointmentsType", connection);
                 using (var reader = command.ExecuteReader())
                 {
