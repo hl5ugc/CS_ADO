@@ -15,7 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLConnectionADO4", "SQLCon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp", "WpfApp\WpfApp.csproj", "{10F4BD50-FBB2-4A0C-A605-9B7304F460BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppDemo", "WpfAppDemo\WpfAppDemo.csproj", "{0DB74B25-9C13-4D75-9520-65BE1A4B7013}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfAppDemo", "WpfAppDemo\WpfAppDemo.csproj", "{0DB74B25-9C13-4D75-9520-65BE1A4B7013}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlDataAdapterDemo", "SqlDataAdapterDemo\SqlDataAdapterDemo.csproj", "{A7EFE68D-5E2C-48CE-AFC7-89DE9E037367}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{0DB74B25-9C13-4D75-9520-65BE1A4B7013}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DB74B25-9C13-4D75-9520-65BE1A4B7013}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DB74B25-9C13-4D75-9520-65BE1A4B7013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7EFE68D-5E2C-48CE-AFC7-89DE9E037367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7EFE68D-5E2C-48CE-AFC7-89DE9E037367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7EFE68D-5E2C-48CE-AFC7-89DE9E037367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7EFE68D-5E2C-48CE-AFC7-89DE9E037367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
