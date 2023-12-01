@@ -23,5 +23,17 @@ namespace WpfApp.AppointmentTypes
         {
             InitializeComponent();
         }
+        public string AppointmentTypeName { get; private set; }
+
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppointmentTypeName = AppointTypeNameTextBox.Text;
+            DialogResult = true;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
     }
 }
