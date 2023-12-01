@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:WpfApp.AppointmentTypes"
         mc:Ignorable="d"
         Title="Edit Appintment Types" Height="200" Width="300">
-    <Grid>
-        
-    </Grid>
+    <StackPanel >
+        <TextBlock Text="Appointment Type Name " Margin="5 5 5 5"/>
+        <TextBox x:Name="AppointTypeNameTextBox" Margin="5 0 5 10"/>
+        <StackPanel Orientation="Horizontal">
+            <CheckBox x:Name="IsActiveCheckBox" Margin=" 5 0 10 5" Content="Active"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="OK" Width="100" Margin="5" Click="OKButton_Click"/>
+            <Button Content="Cancel" Width="100" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

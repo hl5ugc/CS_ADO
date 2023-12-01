@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfApp.Models;
 
 namespace WpfApp.AppointmentTypes
 {
@@ -19,11 +9,52 @@ namespace WpfApp.AppointmentTypes
     /// </summary>
     public partial class AppointmentTypesMainForm : Window
     {
+        private readonly List<AppointmentType> _appointmentTypes; // Model Class AppointmentType 의 LIST
+        private readonly string _connectionString =
+            "Data Source=(localdb)\\MSSQLLocalDB; Initial catalog=AppointDB; Integrated Security = True;";
+
         public AppointmentTypesMainForm()
         {
             InitializeComponent();
+            _appointmentTypes = new List<AppointmentType>();    // 초기화
+            AppointmentTypesListView.ItemsSource = _appointmentTypes;
+            LoadData();
         }
 
+        private void LoadData()
+        {
+            _appointmentTypes.Clear();
+            // Read Data table 
+            // ADO.NET을 이용하여 데이타 조회
+            // Table -> Model classs -> ListView -> ListView.Items.Refresh
+            //
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new SqlCommand("SELECT Id, AppointmentTypeName, IsActive FROM AppointmentsType", connection);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var id = (int)reader["Id"];
+                        var name = (string)reader["AppointmentTypeName"];
+                        var isActive = (bool)reader["IsActive"];
+
+                        var appointmentType = new AppointmentType
+                        {
+                            Id = id,
+                            AppointmentTypeName = name,
+                            IsActive = isActive
+                        };
+                        _appointmentTypes.Add(appointmentType);
+                    }
+                }
+                //
+                AppointmentTypesListView.Items.Refresh();
+
+            }
+        }
+        //
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var addwindow = new AddAppintmentTypeWindow();
@@ -35,14 +66,14 @@ namespace WpfApp.AppointmentTypes
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            var editWindow = new EditAppintmentTypeWindow();
+            var editWindow = new EditAppintmentTypeWindow("", false);
             editWindow.ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure you want to delete this appointment type ?", 
-                "Delete",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            MessageBox.Show("Are you sure you want to delete this appointment type ?",
+                "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
         }
     }
 }
